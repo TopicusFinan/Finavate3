@@ -1,66 +1,81 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.finan.nl/finavate/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Finavate" targetNamespace="http://www.finan.nl/finavate/">
-  <wsdl:types>
-    <xsd:schema targetNamespace="http://www.finan.nl/finavate/">
-      <xsd:element name="TextIn">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="in" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="TextOut">
-        <xsd:complexType>
-          <xsd:sequence>
-            <xsd:element name="out" type="xsd:string"/>
-          </xsd:sequence>
-        </xsd:complexType>
-      </xsd:element>
-      <xsd:element name="NewOperation1">
-      	<xsd:complexType>
-      		<xsd:sequence>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+	xmlns:tns="http://www.finan.nl/finavate/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+	xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="Finavate"
+	targetNamespace="http://www.finan.nl/finavate/">
+	<wsdl:types>
+		<xsd:schema targetNamespace="http://www.finan.nl/finavate/">
+			<xsd:element name="TextIn">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="in" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="TextOut">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="TextServiceFireAndForget">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="in" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="TextServiceFireAndForgetResponse">
+				<xsd:complexType>
+					<xsd:sequence>
 
-      			<xsd:element name="in" type="xsd:string"></xsd:element>
-      		</xsd:sequence>
-      	</xsd:complexType>
-      </xsd:element>
-      <xsd:element name="NewOperation1Response">
-      	<xsd:complexType>
-      		<xsd:sequence>
-
-      			<xsd:element name="out" type="xsd:string"></xsd:element>
-      		</xsd:sequence>
-      	</xsd:complexType>
-      </xsd:element>
-    </xsd:schema>
-  </wsdl:types>
-  <wsdl:message name="doTextRequest">
-    <wsdl:part element="tns:TextIn" name="parameters" />
-  </wsdl:message>
-  <wsdl:message name="doTextResponse">
-    <wsdl:part element="tns:TextOut" name="parameters" />
-  </wsdl:message>
-  <wsdl:portType name="Finavate">
-    <wsdl:operation name="TextService">
-      <wsdl:input message="tns:doTextRequest" name="doTextRequest"/>
-      <wsdl:output message="tns:doTextResponse" name="doTextResponse"/>
-    </wsdl:operation>
-  </wsdl:portType>
-  <wsdl:binding name="FinavateSOAP" type="tns:Finavate">
-    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
-    <wsdl:operation name="TextService">
-      <soap:operation soapAction="http://www.finan.nl/finavate/TextService"/>
-      <wsdl:input name="doTextRequest">
-        <soap:body use="literal"/>
-      </wsdl:input>
-      <wsdl:output name="doTextResponse">
-        <soap:body use="literal"/>
-      </wsdl:output>
-    </wsdl:operation>
-  </wsdl:binding>
-  <wsdl:service name="Finavate">
-    <wsdl:port binding="tns:FinavateSOAP" name="FinavateSOAP">
-      <soap:address location="http://www.finan.nl/"/>
-    </wsdl:port>
-  </wsdl:service>
+						<xsd:element name="out" type="xsd:string"></xsd:element>
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+			<xsd:element name="TextOutFireAndForget">
+				<xsd:complexType>
+					<xsd:sequence>
+						<xsd:element name="out" type="xsd:string" />
+					</xsd:sequence>
+				</xsd:complexType>
+			</xsd:element>
+		</xsd:schema>
+	</wsdl:types>
+	<wsdl:message name="doTextRequest">
+		<wsdl:part element="tns:TextIn" name="parameters" />
+	</wsdl:message>
+	<wsdl:message name="doTextResponse">
+		<wsdl:part element="tns:TextOut" name="parameters" />
+	</wsdl:message>	<wsdl:message name="doTextServiceFireAndForgetRequest">		<wsdl:part name="parameters" element="tns:TextOutFireAndForget"></wsdl:part>	</wsdl:message>		<wsdl:portType name="Finavate">
+		<wsdl:operation name="TextService">
+			<wsdl:input message="tns:doTextRequest" name="doTextRequest" />
+			<wsdl:output message="tns:doTextResponse" name="doTextResponse" />
+		</wsdl:operation>		<wsdl:operation name="TextServiceFireAndForget">			<wsdl:input message="tns:doTextServiceFireAndForgetRequest" name="doTextServiceFireAndForgetRequest"></wsdl:input>					</wsdl:operation>
+	</wsdl:portType>
+	<wsdl:binding name="FinavateSOAP" type="tns:Finavate">
+		<soap:binding style="document"
+			transport="http://schemas.xmlsoap.org/soap/http" />
+		<wsdl:operation name="TextService">
+			<soap:operation soapAction="http://www.finan.nl/finavate/TextService" />
+			<wsdl:input name="doTextRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+			<wsdl:output name="doTextResponse">
+				<soap:body use="literal" />
+			</wsdl:output>
+		</wsdl:operation>
+		<wsdl:operation name="TextServiceFireAndForget">
+			<soap:operation soapAction="http://www.finan.nl/finavate/TextServiceFireAndForget" />
+			<wsdl:input name="doTextServiceFireAndForgetRequest">
+				<soap:body use="literal" />
+			</wsdl:input>
+		</wsdl:operation>
+	</wsdl:binding>
+	<wsdl:service name="Finavate">
+		<wsdl:port binding="tns:FinavateSOAP" name="FinavateSOAP">
+			<soap:address location="http://www.finan.nl/" />
+		</wsdl:port>
+	</wsdl:service>
 </wsdl:definitions>

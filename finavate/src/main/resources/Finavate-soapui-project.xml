@@ -1,0 +1,238 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<con:soapui-project activeEnvironment="Default" name="Finavate" resourceRoot="" soapui-version="4.6.2" xmlns:con="http://eviware.com/soapui/config"><con:settings><con:setting id="ProjectSettings@hermesConfig">C:\.hermes</con:setting></con:settings><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FinavateSOAP" type="wsdl" bindingName="{http://www.finan.nl/finavate/}FinavateSOAP" soapVersion="1_1" anonymous="optional" definition="file:/C:/Users/Finan/git/Finavate/finavate/src/main/webapp/Finavate.wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="file:/C:/Users/Finan/git/Finavate/finavate/src/main/webapp/Finavate.wsdl"><con:part><con:url>file:/C:/Users/Finan/git/Finavate/finavate/src/main/webapp/Finavate.wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="Finavate" targetNamespace="http://www.finan.nl/finavate/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tns="http://www.finan.nl/finavate/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.finan.nl/finavate/">
+      <xsd:element name="TextIn">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TextOut">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TextServiceFireAndForget">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="in" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TextServiceFireAndForgetResponse">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+      <xsd:element name="TextOutFireAndForget">
+        <xsd:complexType>
+          <xsd:sequence>
+            <xsd:element name="out" type="xsd:string"/>
+          </xsd:sequence>
+        </xsd:complexType>
+      </xsd:element>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="doTextRequest">
+    <wsdl:part element="tns:TextIn" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="doTextResponse">
+    <wsdl:part element="tns:TextOut" name="parameters"/>
+  </wsdl:message>
+  <wsdl:message name="doTextServiceFireAndForgetRequest">
+    <wsdl:part name="parameters" element="tns:TextOutFireAndForget"/>
+  </wsdl:message>
+  <wsdl:portType name="Finavate">
+    <wsdl:operation name="TextService">
+      <wsdl:input message="tns:doTextRequest" name="doTextRequest"/>
+      <wsdl:output message="tns:doTextResponse" name="doTextResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="TextServiceFireAndForget">
+      <wsdl:input message="tns:doTextServiceFireAndForgetRequest" name="doTextServiceFireAndForgetRequest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="FinavateSOAP" type="tns:Finavate">
+    <soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TextService">
+      <soap:operation soapAction="http://www.finan.nl/finavate/TextService"/>
+      <wsdl:input name="doTextRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="doTextResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TextServiceFireAndForget">
+      <soap:operation soapAction="http://www.finan.nl/finavate/TextServiceFireAndForget"/>
+      <wsdl:input name="doTextServiceFireAndForgetRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="Finavate">
+    <wsdl:port binding="tns:FinavateSOAP" name="FinavateSOAP">
+      <soap:address location="http://www.finan.nl/"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://finan-bd:8088/mockFinavateSOAP</con:endpoint><con:endpoint>http://www.finan.nl/</con:endpoint><con:endpoint>jms://HornetQ::queue_jms/queue/test</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.finan.nl/finavate/TextService" name="TextService" bindingOperationName="TextService" type="Request-Response" outputName="doTextResponse" inputName="doTextRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/FinavateService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://www.finan.nl/finavate/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fin:TextIn>
+         <in>Hello</in>
+      </fin:TextIn>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextService"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.finan.nl/finavate/TextServiceFireAndForget" name="TextServiceFireAndForget" bindingOperationName="TextServiceFireAndForget" type="One-Way" inputName="doTextServiceFireAndForgetRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://finan-bd:8088/mockFinavateSOAP</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://www.finan.nl/finavate/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fin:TextOutFireAndForget>
+         <out>?</out>
+      </fin:TextOutFireAndForget>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextServiceFireAndForget"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:interface xsi:type="con:WsdlInterface" wsaVersion="NONE" name="FinavateSOAP" type="wsdl" bindingName="{http://tempuri.org/}FinavateSOAP" soapVersion="1_1" anonymous="optional" definition="http://localhost/FinavateService.svc?wsdl" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:settings/><con:definitionCache type="TEXT" rootPart="http://localhost/FinavateService.svc?wsdl"><con:part><con:url>http://localhost/FinavateService.svc?wsdl</con:url><con:content><![CDATA[<wsdl:definitions name="FinavateService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:i0="http://www.finan.nl/finavate/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://tempuri.org/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:import namespace="http://www.finan.nl/finavate/" location="http://localhost/FinavateService.svc?wsdl=wsdl0"/>
+  <wsdl:types/>
+  <wsdl:binding name="FinavateSOAP" type="i0:Finavate">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http"/>
+    <wsdl:operation name="TextService">
+      <soap:operation soapAction="http://www.finan.nl/finavate/TextService" style="document"/>
+      <wsdl:input name="doTextRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+      <wsdl:output name="doTextResponse">
+        <soap:body use="literal"/>
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="TextServiceFireAndForget">
+      <soap:operation soapAction="http://www.finan.nl/finavate/TextServiceFireAndForget" style="document"/>
+      <wsdl:input name="doTextServiceFireAndForgetRequest">
+        <soap:body use="literal"/>
+      </wsdl:input>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="FinavateService">
+    <wsdl:port name="FinavateSOAP" binding="tns:FinavateSOAP">
+      <soap:address location="http://localhost/FinavateService.svc"/>
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost/FinavateService.svc?wsdl=wsdl0</con:url><con:content><![CDATA[<wsdl:definitions targetNamespace="http://www.finan.nl/finavate/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.finan.nl/finavate/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/">
+  <wsdl:types>
+    <xsd:schema targetNamespace="http://www.finan.nl/finavate/Imports">
+      <xsd:import schemaLocation="http://localhost/FinavateService.svc?xsd=xsd0" namespace="http://www.finan.nl/finavate/"/>
+      <xsd:import schemaLocation="http://localhost/FinavateService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/"/>
+      <xsd:import schemaLocation="http://localhost/FinavateService.svc?xsd=xsd2"/>
+    </xsd:schema>
+  </wsdl:types>
+  <wsdl:message name="doTextRequest">
+    <wsdl:part name="parameters" element="tns:TextIn"/>
+  </wsdl:message>
+  <wsdl:message name="doTextResponse">
+    <wsdl:part name="parameters" element="tns:TextOut"/>
+  </wsdl:message>
+  <wsdl:message name="doTextServiceFireAndForgetRequest">
+    <wsdl:part name="parameters" element="tns:TextOutFireAndForget"/>
+  </wsdl:message>
+  <wsdl:portType name="Finavate">
+    <wsdl:operation name="TextService">
+      <wsdl:input wsaw:Action="http://www.finan.nl/finavate/TextService" name="doTextRequest" message="tns:doTextRequest"/>
+      <wsdl:output wsaw:Action="" name="doTextResponse" message="tns:doTextResponse"/>
+    </wsdl:operation>
+    <wsdl:operation name="TextServiceFireAndForget">
+      <wsdl:input wsaw:Action="http://www.finan.nl/finavate/TextServiceFireAndForget" name="doTextServiceFireAndForgetRequest" message="tns:doTextServiceFireAndForgetRequest"/>
+    </wsdl:operation>
+  </wsdl:portType>
+</wsdl:definitions>]]></con:content><con:type>http://schemas.xmlsoap.org/wsdl/</con:type></con:part><con:part><con:url>http://localhost/FinavateService.svc?xsd=xsd0</con:url><con:content><![CDATA[<xs:schema elementFormDefault="qualified" targetNamespace="http://www.finan.nl/finavate/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://www.finan.nl/finavate/">
+  <xs:import schemaLocation="http://localhost/FinavateService.svc?xsd=xsd2"/>
+  <xs:element name="TextIn">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="in"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TextOut">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="out"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="TextOutFireAndForget">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" ref="out"/>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost/FinavateService.svc?xsd=xsd2</con:url><con:content>&lt;xs:schema elementFormDefault="qualified" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  &lt;xs:element name="in" nillable="true" type="xs:string"/>
+  &lt;xs:element name="out" nillable="true" type="xs:string"/>
+&lt;/xs:schema></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part><con:part><con:url>http://localhost/FinavateService.svc?xsd=xsd1</con:url><con:content><![CDATA[<xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://schemas.microsoft.com/2003/10/Serialization/" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://schemas.microsoft.com/2003/10/Serialization/">
+  <xs:element name="anyType" nillable="true" type="xs:anyType"/>
+  <xs:element name="anyURI" nillable="true" type="xs:anyURI"/>
+  <xs:element name="base64Binary" nillable="true" type="xs:base64Binary"/>
+  <xs:element name="boolean" nillable="true" type="xs:boolean"/>
+  <xs:element name="byte" nillable="true" type="xs:byte"/>
+  <xs:element name="dateTime" nillable="true" type="xs:dateTime"/>
+  <xs:element name="decimal" nillable="true" type="xs:decimal"/>
+  <xs:element name="double" nillable="true" type="xs:double"/>
+  <xs:element name="float" nillable="true" type="xs:float"/>
+  <xs:element name="int" nillable="true" type="xs:int"/>
+  <xs:element name="long" nillable="true" type="xs:long"/>
+  <xs:element name="QName" nillable="true" type="xs:QName"/>
+  <xs:element name="short" nillable="true" type="xs:short"/>
+  <xs:element name="string" nillable="true" type="xs:string"/>
+  <xs:element name="unsignedByte" nillable="true" type="xs:unsignedByte"/>
+  <xs:element name="unsignedInt" nillable="true" type="xs:unsignedInt"/>
+  <xs:element name="unsignedLong" nillable="true" type="xs:unsignedLong"/>
+  <xs:element name="unsignedShort" nillable="true" type="xs:unsignedShort"/>
+  <xs:element name="char" nillable="true" type="tns:char"/>
+  <xs:simpleType name="char">
+    <xs:restriction base="xs:int"/>
+  </xs:simpleType>
+  <xs:element name="duration" nillable="true" type="tns:duration"/>
+  <xs:simpleType name="duration">
+    <xs:restriction base="xs:duration">
+      <xs:pattern value="\-?P(\d*D)?(T(\d*H)?(\d*M)?(\d*(\.\d*)?S)?)?"/>
+      <xs:minInclusive value="-P10675199DT2H48M5.4775808S"/>
+      <xs:maxInclusive value="P10675199DT2H48M5.4775807S"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:element name="guid" nillable="true" type="tns:guid"/>
+  <xs:simpleType name="guid">
+    <xs:restriction base="xs:string">
+      <xs:pattern value="[\da-fA-F]{8}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{4}-[\da-fA-F]{12}"/>
+    </xs:restriction>
+  </xs:simpleType>
+  <xs:attribute name="FactoryType" type="xs:QName"/>
+  <xs:attribute name="Id" type="xs:ID"/>
+  <xs:attribute name="Ref" type="xs:IDREF"/>
+</xs:schema>]]></con:content><con:type>http://www.w3.org/2001/XMLSchema</con:type></con:part></con:definitionCache><con:endpoints><con:endpoint>http://localhost/FinavateService.svc</con:endpoint><con:endpoint>http://localhost:2470/FinavateService.svc</con:endpoint><con:endpoint>jms://HornetQ::queue_jms/queue/test</con:endpoint></con:endpoints><con:operation isOneWay="false" action="http://www.finan.nl/finavate/TextService" name="TextService" bindingOperationName="TextService" type="Request-Response" outputName="doTextResponse" inputName="doTextRequest" receivesAttachments="false" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/FinavateService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://www.finan.nl/finavate/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fin:TextIn>
+         <!--Optional:-->
+         <in>Hello</in>
+      </fin:TextIn>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextService"/><con:wsrmConfig version="1.2"/></con:call></con:operation><con:operation isOneWay="false" action="http://www.finan.nl/finavate/TextServiceFireAndForget" name="TextServiceFireAndForget" bindingOperationName="TextServiceFireAndForget" type="One-Way" inputName="doTextServiceFireAndForgetRequest" sendsAttachments="false" anonymous="optional"><con:settings/><con:call name="Request 1"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.WsdlRequest@request-headers">&lt;xml-fragment/></con:setting></con:settings><con:encoding>UTF-8</con:encoding><con:endpoint>http://localhost/FinavateService.svc</con:endpoint><con:request><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://www.finan.nl/finavate/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fin:TextOutFireAndForget>
+         <!--Optional:-->
+         <out>?</out>
+      </fin:TextOutFireAndForget>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:request><con:credentials><con:authType>Global HTTP Settings</con:authType></con:credentials><con:jmsConfig JMSDeliveryMode="PERSISTENT"/><con:jmsPropertyConfig/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextServiceFireAndForget"/><con:wsrmConfig version="1.2"/></con:call></con:operation></con:interface><con:mockService port="8088" path="/mockFinavateSOAP" host="finan-bd" name="FinavateSOAP MockService"><con:settings><con:setting id="com.eviware.soapui.impl.wsdl.mock.WsdlMockService@require-soap-action">false</con:setting></con:settings><con:mockOperation name="TextService" interface="FinavateSOAP" operation="TextService"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent><![CDATA[<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/" xmlns:fin="http://www.finan.nl/finavate/">
+   <soapenv:Header/>
+   <soapenv:Body>
+      <fin:TextOut>
+         <out>Hello World! Welcome to Finavate.</out>
+      </fin:TextOut>
+   </soapenv:Body>
+</soapenv:Envelope>]]></con:responseContent><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextService"/></con:response><con:dispatchConfig/></con:mockOperation><con:mockOperation name="TextServiceFireAndForget" interface="FinavateSOAP" operation="TextServiceFireAndForget"><con:settings/><con:dispatchStyle>SEQUENCE</con:dispatchStyle><con:defaultResponse>Response 1</con:defaultResponse><con:response name="Response 1" encoding="UTF-8"><con:settings/><con:responseContent/><con:wsaConfig mustUnderstand="NONE" version="200508" action="http://www.finan.nl/finavate/TextService"/></con:response><con:dispatchConfig/></con:mockOperation><con:properties/></con:mockService><con:endpointStrategy xsi:type="con:DefaultEndpointStrategy" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"><con:endpoint mode="COMPLEMENT" username="sandeep" password="password">jms://HornetQ::queue_jms/queue/test</con:endpoint></con:endpointStrategy><con:requirements/><con:properties/><con:wssContainer/><con:databaseConnectionContainer/><con:reporting><con:xmlTemplates/><con:parameters/></con:reporting><con:sensitiveInformation/></con:soapui-project>
